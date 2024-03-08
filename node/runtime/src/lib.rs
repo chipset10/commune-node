@@ -6,7 +6,6 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-use frame_system::EnsureRoot;
 use pallet_grandpa::AuthorityId as GrandpaId;
 use sp_api::impl_runtime_apis;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
@@ -149,8 +148,6 @@ parameter_types! {
 	pub BlockLength: frame_system::limits::BlockLength = frame_system::limits::BlockLength
 		::max_with_normal_ratio(5 * 1024 * 1024, NORMAL_DISPATCH_RATIO);
 	pub const SS58Prefix: u8 = 42;
-	pub const MaxWellKnownNodes: u32 = 8;
- 	pub const MaxPeerIdLength: u32 = 128;
 }
 
 // Configure FRAME pallets to include in runtime.
@@ -289,15 +286,6 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
-	}
-
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
-		/*** Add This Line ***/
-		NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
 	}
 );
 
@@ -515,17 +503,6 @@ impl_runtime_apis! {
 		fn query_length_to_fee(length: u32) -> Balance {
 			TransactionPayment::length_to_fee(length)
 		}
-	}
-
-	impl pallet_node_authorization::Config for Runtime {
-		type RuntimeEvent = RuntimeEvent;
-		type MaxWellKnownNodes = MaxWellKnownNodes;
-		type MaxPeerIdLength = MaxPeerIdLength;
-		type AddOrigin = EnsureRoot<AccountId>;
-		type RemoveOrigin = EnsureRoot<AccountId>;
-		type SwapOrigin = EnsureRoot<AccountId>;
-		type ResetOrigin = EnsureRoot<AccountId>;
-		type WeightInfo = ();
 	}
 
 	#[cfg(feature = "runtime-benchmarks")]
