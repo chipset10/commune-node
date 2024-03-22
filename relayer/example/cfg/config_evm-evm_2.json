@@ -1,0 +1,89 @@
+{
+  "relayer": {
+    "mpcConfig": {
+      "port": "9001",
+      "keysharePath": "/cfg/keyshares/1.keyshare",
+      "key": "CAASpwkwggSjAgEAAoIBAQC89zG/nTK/iWXllnMv65fyrhndM/hhe4IAUnC1kgdzazgUDRCsDHvmPOJ2TccgBjiuG5alxo+tw9y20PYJJoZB7ctDPxBKRJ/6l+0UrWUZE4LxxbKPW4RIRvosVr78OFTrRE63eTsJwUEDNj8EanN+biftSlSzN3DAh/ZSEZtqXUEul2ZxZcuSzgo7gjglGSqTlMLEMHhTu09ceXUECNeky2v6pAKQ/7khaMS96nYTBcyT5ZrEss0fQV13txHoMie+LbnjFM82ezZwcN4GGiHyxyU88/1WP/SKQhW6Ug5Zvd5kkDUuZzKMDRaj3gwDf47uYUGEGDMoL8m2r3OUIAVJAgMBAAECggEAIW3xxR5APhZGiolFM3MQXIRkWve4tzYsV3Y+LkD5RHfxYcq16loDCUY4Igm8cnPnTxXeXtFz1Z/SyhzJifDgy4UP8oOTlC/zxVdfP8s1GWyUO8Vnw2jDTC4SUAnAm8oza7OX4Wl3AlDH+ZN9LoDOkc1XDumZdmMWdVkYQIiQ4A30+AVcuKpfWZa+e034vtHV6/0Ys+zX/jbiRgw5bnZAsFiiy577V0RGzMqcILtrZfg9FHmyRhrfQH+Kh1HlYrHIUqaWaZHl8vROBHJs0ePqPoXmVSCu9dzJLtIzZlAtIUi7CX1SkIXFR4ZF+RORGQK3v0qNLQK55hPe/DndhpewoQKBgQDC4Y6vgbTLurYEgT4kDlrY0rZ1Yjkxi4LwpEfiEN/NHeO5IwePc4SwZ7y4JVNcN0KJFPlitdELXjKJJ9rjmvgUHJ2IQu1drEk5JJXdKq7s6lEROhggj1U+tRBc5znmOPd/PsFjETJ0ux4/vSBM6fQgWK+yGfL2QZdJbwZ7N8QtDQKBgQD4OrMz9G/GCdxnXbHnu+RTTYrHa6WrUBViRqUyy/PYnLD1TGvaARf64R7kHXrhIBZlLLjuiOq8VhVBD5jGpK798Egk52DoRPIRPYmhmGkg7iNj62MUrCk4BwVsgOBZjkvzb0iSIOh67ZpqR7p5iKhAkasaOLtR/ertAGjxSPICLQKBgQC2PMD2ZF+SKB5v5gAbLYVMvva6nEiJiUHAEI/b2hW+tRWvmg9G2Sqa39c9iEIEuPQyRnfTE9zROZweYDOzpcYY4I17z8IyV5r9obW25WRAzflTF7VaNU7s3drYVa3yGRFwX1nubzV0rUpjJlOfOSP+X5ClBtkJ6Vo05Gr2LLb5vQKBgE0wG6dtPBCN4m52ESspHw/UTfJDBAooZe3gX+BS0WmrF8+/Ss5Ihsdpl2yBykMU8kHVzU/HXY7hCczoZ65laVDnldd754NyZP99bj3EofQueOzKNk4oVszoSgR6cskGWZHCKgPencwT9G9WDKNcHk2tvlHyEDWnypSWCwv0jeSlAoGACso4W3vBXaXCUbNqOQ+T0GZGvbvGUDE5XC2Xe7rbZAsoAgrjInqZhwqqjnRV4QnjtdXrA+PjtubS9OKeU6aguFp0f/8VQzZ4lGKFHj+6Sa84+5pEvc+V9lRg1FKTLyDY8d8IXxjqc/IKfc+yosyXFdwkYwddSVmH5fjwHaH/bBg=",
+      "topologyConfiguration": {
+        "path": ".",
+        "url": "test.url",
+        "encryptionKey": "test-enc-key"
+      },
+      "commHealthCheckInterval": "24h"
+    },
+    "opentelemetryCollectorURL": "http://otel-collector:4318"
+  },
+  "domains": [
+    {
+      "id": 1,
+      "name": "evm1",
+      "type": "evm",
+      "endpoint": "ws://evm1-1:8545",
+      "bridge": "0x6CdE2Cd82a4F8B74693Ff5e194c19CA08c2d1c68",
+      "handlers": [
+        {
+          "type": "erc20",
+          "address": "0x02091EefF969b33A5CE8A729DaE325879bf76f90"
+        },
+        {
+          "type": "erc721",
+          "address": "0xC2D334e2f27A9dB2Ed8C4561De86C1A00EBf6760"
+        },
+        {
+          "type": "permissionedGeneric",
+          "address": "0xF28c11CB14C6d2B806f99EA8b138F65e74a1Ed66"
+        },
+        {
+          "type": "permissionlessGeneric",
+          "address": "0xE837D42dd3c685839a418886f418769BDD23546b"
+        }
+      ],
+      "gasLimit": 9000000,
+      "maxGasPrice": 20000000000,
+      "blockConfirmations": 2,
+      "key": "266aafa561c7a5329d8075521c5cf6a94253d4280b33b0a9c5135aaccdc2f3d3"
+    },
+    {
+      "id": 2,
+      "name": "evm2",
+      "type": "evm",
+      "endpoint": "ws://evm2-1:8545",
+      "bridge": "0x6CdE2Cd82a4F8B74693Ff5e194c19CA08c2d1c68",
+      "handlers": [
+        {
+          "type": "erc20",
+          "address": "0x02091EefF969b33A5CE8A729DaE325879bf76f90"
+        },
+        {
+          "type": "erc721",
+          "address": "0xC2D334e2f27A9dB2Ed8C4561De86C1A00EBf6760"
+        },
+        {
+          "type": "permissionedGeneric",
+          "address": "0xF28c11CB14C6d2B806f99EA8b138F65e74a1Ed66"
+        },
+        {
+          "type": "permissionlessGeneric",
+          "address": "0xE837D42dd3c685839a418886f418769BDD23546b"
+        }
+      ],
+      "gasLimit": 9000000,
+      "startBlock": 50,
+      "maxGasPrice": 20000000000,
+      "blockConfirmations": 2,
+      "key": "266aafa561c7a5329d8075521c5cf6a94253d4280b33b0a9c5135aaccdc2f3d3"
+    },
+    {
+      "id": 3,
+      "chainID": 5,
+      "name": "substrate1",
+      "type": "substrate",
+      "endpoint": "ws://substrate-pallet:9944",
+      "tip": 0,
+      "startBlock": 5,
+      "blockConfirmations": 2,
+      "key": "//Bob",
+      "substrateNetwork": 0
+    }
+  ]
+}
